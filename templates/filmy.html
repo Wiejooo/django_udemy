@@ -1,10 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+<body>
+
+    {% if filmy|length == 0 %}
+        <h2>There is no films</h2>
+    {% else %}
+        <h2> The number of films in data base: {{ filmy|length }} </h2>
+
+        {% for film in filmy %}
+          <p>{{ film }}</p>
+        {% endfor %}
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'new.css' %}">
+</body>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<h2> Here will be my films </h2>
-</body>
 </html>

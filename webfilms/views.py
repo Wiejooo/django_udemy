@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Films
 
 
 def all_films(request):
-    return render(request, 'filmy.html')
+    all = Films.objects.all()
+    return render(request, 'filmy.html', {'filmy': all})
 
 
 def empty_page(request):
