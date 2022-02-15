@@ -1,21 +1,31 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<body>
+{% extends 'main.html' %}
 
+{% block title %} Films list {% endblock %}
+
+
+
+{% block page %}
+    {% if user.is_authenticated %}
+        Welcome {{ user.username }} <br>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+    <hr>
+
+    <a href="{% url 'new_film' %}">New film</a>
     {% if filmy|length == 0 %}
         <h2>There is no films</h2>
     {% else %}
         <h2> The number of films in data base: {{ filmy|length }} </h2>
 
         {% for film in filmy %}
-          <p>{{ film }}</p>
+            <h3>{{ film }}</h3>
+            <p>{{ film.description }}</p>
+            <a href="{% url 'edit_film' film.id %}">Edit</a>
+            <a href="{% url 'delete_film' film.id %}">Delete</a>
         {% endfor %}
     {% endif %}
-    <link rel="stylesheet" href="{% static 'new.css' %}">
-</body>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-</html>
+ {% endblock %}
+

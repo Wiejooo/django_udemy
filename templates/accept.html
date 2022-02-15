@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Do you want to delete ''{{ film.title }}'' for sure?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete film</button>
+
+    </form>
+    <a href="{% url 'all_films' %}">Back</a>
+</body>
+</html>
